@@ -110,6 +110,7 @@ sub _test_two
 
   my $first_expires_in = 20;
 
+  my $start = time;
   $cache->set( $first_key, $value, $first_expires_in );
 
   my $first_size = $cache->size( );
@@ -129,11 +130,17 @@ sub _test_two
 
     $cache->set( $key, $value, $second_expires_in );
   }
+  my $second_inserted = time;
 
   my $second_size = $cache->size( );
 
-  ( $second_size > $first_size ) ?
-    $self->ok( ) : $self->not_ok( '$second_size > $first_size' );
+  if (time - $start < $first_expires_in ) {
+    ( $second_size > $first_size ) ?
+      $self->ok( ) : $self->not_ok( '$second_size > $first_size' );
+  } else {
+      $self->skip( '$second_size > $first_size (not finished in ' .
+      $first_expires_in . ' s)');
+  }
 
   my $size_limit = $first_size;
 
@@ -146,8 +153,18 @@ sub _test_two
 
   my $first_value = $cache->get( $first_key );
 
-  ( $first_value eq $value ) ?
-    $self->ok( ) : $self->not_ok( '$first_value eq $value' );
+  if (time - $start >= $first_expires_in) {
+    $self->skip( '$first_value eq $value (not finished in ' .
+      $first_expires_in . ' s)');
+  } elsif ($second_inserted + $second_expires_in >=
+      $start + $first_expires_in) {
+    $self->skip( '$first_value eq $value (second key insterted to late, ' .
+     'so first key had expiration time before the second one, ' .
+     'thus the first key was removed when limit cache size');
+  } else {
+    ( $first_value eq $value ) ?
+      $self->ok( ) : $self->not_ok( '$first_value eq $value' );
+  }
 
 }
 

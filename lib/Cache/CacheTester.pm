@@ -168,12 +168,18 @@ sub _test_four
 
   my $value = 'Test Value';
 
+  my $start = time;
   $cache->set( $key, $value, $expires_in );
 
   my $fetched_value = $cache->get( $key );
 
-  ( $fetched_value eq $value ) ?
-    $self->ok( ) : $self->not_ok( '$fetched_value eq $value' );
+  if (time - $start < $expires_in) {
+    ( $fetched_value eq $value ) ?
+      $self->ok( ) : $self->not_ok( '$fetched_value eq $value' );
+  } else {
+      $self->skip( '$fetched_value eq $value (not finished in ' .
+        $expires_in . ' s)' );
+  }
 
   sleep( $EXPIRES_DELAY + 1 );
 
@@ -460,12 +466,18 @@ sub _test_thirteen
 
   my $value = 'Test Value';
 
+  my $start = time;
   $cache->set( $key, $value, $expires_in );
 
   my $fetched_value = $cache->get( $key );
 
-  ( $fetched_value eq $value ) ?
-    $self->ok( ) : $self->not_ok( '$fetched_value eq $value' );
+  if (time - $start < $expires_in) {
+    ( $fetched_value eq $value ) ?
+      $self->ok( ) : $self->not_ok( '$fetched_value eq $value' );
+  } else {
+    $self->skip( '$fetched_value eq $value (not finished in ' .
+      $expires_in . ' s)' );
+  }
 
   sleep( $EXPIRES_DELAY + 1 );
 
@@ -525,12 +537,18 @@ sub _test_fifteen
 
   my $value = 'Test Value';
 
+  my $start = time;
   $cache->set( $key, $value, $expires_in );
 
   my $fetched_value = $cache->get( $key );
 
-  ( $fetched_value eq $value ) ?
-    $self->ok( ) : $self->not_ok( '$fetched_value eq $value' );
+  if (time - $start < $expires_in) {
+    ( $fetched_value eq $value ) ?
+      $self->ok( ) : $self->not_ok( '$fetched_value eq $value' );
+  } else {
+      $self->skip( '$fetched_value eq $value (not finished in ' .
+        $expires_in . ' s)' );
+  }
 
   sleep( $EXPIRES_DELAY + 1 );
 
