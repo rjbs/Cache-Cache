@@ -21,6 +21,7 @@ use Cache::FileBackend;
 use Cache::Object;
 use Error;
 use File::Spec::Functions;
+use Scalar::Util;
 
 
 @ISA = qw ( Cache::BaseCache );
@@ -48,7 +49,7 @@ my $DEFAULT_DIRECTORY_UMASK = 000;
 
 sub Clear
 {
-  my ( $p_optional_cache_root ) = Static_Params( @_ );
+  my ( $p_optional_cache_root ) = _Cache_Root( @_ );
 
   foreach my $namespace ( _Namespaces( $p_optional_cache_root ) )
   {
@@ -59,7 +60,7 @@ sub Clear
 
 sub Purge
 {
-  my ( $p_optional_cache_root ) = Static_Params( @_ );
+  my ( $p_optional_cache_root ) = _Cache_Root( @_ );
 
   foreach my $namespace ( _Namespaces( $p_optional_cache_root ) )
   {
@@ -70,7 +71,7 @@ sub Purge
 
 sub Size
 {
-  my ( $p_optional_cache_root ) = Static_Params( @_ );
+  my ( $p_optional_cache_root ) = _Cache_Root( @_ );
 
   my $size = 0;
 
@@ -95,7 +96,7 @@ sub new
 
 sub _Get_Backend
 {
-  my ( $p_optional_cache_root ) = Static_Params( @_ );
+  my ( $p_optional_cache_root ) = _Cache_Root( @_ );
 
   return new Cache::FileBackend( _Build_Cache_Root( $p_optional_cache_root ) );
 
@@ -115,7 +116,7 @@ sub _Get_Temp_Directory
 
 sub _Build_Cache_Root
 {
-  my ( $p_optional_cache_root ) = Static_Params( @_ );
+  my ( $p_optional_cache_root ) = _Cache_Root( @_ );
 
   if ( defined $p_optional_cache_root )
   {
@@ -127,10 +128,16 @@ sub _Build_Cache_Root
   }
 }
 
+sub _Cache_Root {
+  my ($self, $opt) = Scalar::Util::blessed $_[0] ? (@_) : (undef, $_[0]);
+  return $opt if $opt;
+  return unless $self;
+  $self->_get_initial_root;
+}
 
 sub _Namespaces
 {
-  my ( $p_optional_cache_root ) = Static_Params( @_ );
+  my ( $p_optional_cache_root ) = _Cache_Root( @_ );
 
   return _Get_Backend( $p_optional_cache_root )->get_namespaces( );
 }
@@ -138,7 +145,8 @@ sub _Namespaces
 
 sub _Get_Cache
 {
-  my ( $p_namespace, $p_optional_cache_root ) = Static_Params( @_ );
+  my ( $p_namespace ) = Static_Params( @_ );
+  my ( $p_optional_cache_root ) = _Cache_Root( @_ );
 
   Assert_Defined( $p_namespace );
 
