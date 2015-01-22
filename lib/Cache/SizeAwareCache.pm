@@ -56,7 +56,7 @@ objects in the following order until the desired limit is reached:
 
   1) objects that have expired
   2) objects that are least recently accessed
-  3) objects that that expire next
+  3) objects that expire next
 
 =head1 SYNOPSIS
 
@@ -90,7 +90,7 @@ the I<$new_size> parameter.  I<$new_size> represents t size (in bytes)
 that the cache should be limited to.  Note that this is only a one
 time adjustment.  To maintain the cache size, consider using the
 I<max_size> option, although it is considered very expensive, and can
-often be better achieved by peridocally calling I<limit_size>.
+often be better achieved by periodically calling I<limit_size>.
 
 =back
 

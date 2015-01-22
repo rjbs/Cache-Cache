@@ -680,7 +680,7 @@ Cache::BaseCache -- abstract cache base class
 =head1 DESCRIPTION
 
 BaseCache provides functionality common to all instances of a cache.
-It differes from the CacheUtils package insofar as it is designed to
+It differs from the CacheUtils package insofar as it is designed to
 be used as superclass for cache implementations.
 
 =head1 SYNOPSIS
@@ -688,8 +688,8 @@ be used as superclass for cache implementations.
 Cache::BaseCache is to be used as a superclass for cache
 implementations.  The most effective way to use BaseCache is to use
 the protected _set_backend method, which will be used to retrieve the
-persistance mechanism.  The subclass can then inherit the BaseCache's
-implentation of get, set, etc.  However, due to the difficulty
+persistence mechanism.  The subclass can then inherit the BaseCache's
+implementation of get, set, etc.  However, due to the difficulty
 inheriting static methods in Perl, the subclass will likely need to
 explicitly implement Clear, Purge, and Size.  Also, a factory pattern
 should be used to invoke the _complete_initialization routine after

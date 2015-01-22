@@ -107,7 +107,7 @@ sub _Restore_Shared_Hash_Ref
 
 # this method uses the shared created by Instantiate_Share to
 # transparently retrieve a reference to a shared hash structure, and
-# additionally exlusively locks the share
+# additionally exclusively locks the share
 
 sub _Restore_Shared_Hash_Ref_With_Lock
 {
@@ -197,7 +197,7 @@ __END__
 
 =head1 NAME
 
-Cache::SharedMemoryBackend -- a shared memory based persistance mechanism
+Cache::SharedMemoryBackend -- a shared memory based persistence mechanism
 
 =head1 DESCRIPTION
 

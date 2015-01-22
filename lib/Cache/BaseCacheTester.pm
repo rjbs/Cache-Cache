@@ -131,17 +131,17 @@ I<$base_test_count>.
 =item B<ok( )>
 
 Print a message to stdout in the form "ok $test_count" and
-incremements the test count.
+increments the test count.
 
 =item B<not_ok( $message )>
 
 Print a message to stdout in the form "not ok $test_count # I<$message> "
-and incremements the test count.
+and increments the test count.
 
 =item B<skip( $message )>
 
 Print a message to stdout in the form "ok $test_count # skipped I<$message> "
-and incremements the test count.
+and increments the test count.
 
 =back
 

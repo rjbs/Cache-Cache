@@ -692,7 +692,7 @@ __END__
 
 =head1 NAME
 
-Cache::FileBackend -- a filesystem based persistance mechanism
+Cache::FileBackend -- a filesystem based persistence mechanism
 
 =head1 DESCRIPTION
 

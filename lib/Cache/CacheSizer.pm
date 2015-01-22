@@ -153,7 +153,7 @@ __END__
 
 =head1 NAME
 
-Cache::CacheSizer -- component object for mamanging the size of caches
+Cache::CacheSizer -- component object for managing the size of caches
 
 =head1 DESCRIPTION
 

@@ -187,7 +187,7 @@ Cache::Cache, Cache::SizeAwareCache, Cache::FileCache
 Original author: DeWitt Clinton <dewitt@unto.net>
 
 Also: Portions of this code are a rewrite of David Coppit's excellent
-extentions to the original File::Cache
+extensions to the original File::Cache
 
 Last author:     $Author: dclinton $
 

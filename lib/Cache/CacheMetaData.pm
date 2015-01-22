@@ -187,8 +187,8 @@ Cache::CacheMetaData -- data about objects in the cache
 =head1 DESCRIPTION
 
 The CacheMetaData object is used by size aware caches to keep track of
-the state of the cache and effeciently return information such as an
-objects size or an ordered list of indentifiers to be removed when a
+the state of the cache and efficiently return information such as an
+objects size or an ordered list of identifiers to be removed when a
 cache size is being limited.  End users will not normally use
 CacheMetaData directly.
 

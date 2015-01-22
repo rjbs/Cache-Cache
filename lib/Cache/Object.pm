@@ -187,7 +187,7 @@ Construct a new Cache::Object.
 
 The time at which the object was last accessed.  Various cache
 implementations will use the accessed_at property to store information
-for LRU algorithms.  There is no guarentee that all caches will update
+for LRU algorithms.  There is no guarantee that all caches will update
 this field, however.
 
 =item B<(get|set)_created_at>

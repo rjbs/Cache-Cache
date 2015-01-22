@@ -125,7 +125,7 @@ __END__
 
 =head1 NAME
 
-Cache::MemoryBackend -- a memory based persistance mechanism
+Cache::MemoryBackend -- a memory based persistence mechanism
 
 =head1 DESCRIPTION
 
