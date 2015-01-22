@@ -30,7 +30,10 @@ use vars qw( $TEST_COUNT );
 
 $TEST_COUNT = 2;
 
-my $cache = new Cache::FileCache( ) or
+use File::Temp qw(tempdir);
+my $tmpdir = tempdir(CLEANUP => 1);
+
+my $cache = new Cache::FileCache({ cache_root => $tmpdir }) or
   not_ok( "Couldn't create new FileCache" );
 
 ok( );
