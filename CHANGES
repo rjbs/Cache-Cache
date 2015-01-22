@@ -1,5 +1,9 @@
 Revision history for Cache
 
+1.08 2015-01-22
+ - try to avoid some race conditions (thanks, Petr Písař)
+ - typo fixes (thanks, David Steinbrunner)
+
 1.07 2014-09-17
  - fix a bug where we checked @$ instead of $@ after eval
 
